@@ -1,0 +1,173 @@
+---
+title: "Predictive Spatial Modeling: Multivariate Reverse Forecasting"
+author: "Kaia Quigg"
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(MASS)
+library(corrplot)
+```
+
+### Data Cleaning ######
+```{r}
+
+snowcrab_raw <- read.csv("data/mfsnowcrab.csv")
+
+# Clean data
+snowcrab <- snowcrab_raw %>%
+  dplyr::select(-1, -5) %>% # Dropping specific index columns
+  mutate(sex = as.factor(sex))
+
+# Inspect data integrity
+colSums(is.na(snowcrab))
+summary(snowcrab)
+```
+
+### Create Total Success Metric (Haul Aggregation)
+
+```{r}
+# Safely aggregate all physical factors by Year and Haul simultaneously
+haul_df <- snowcrab_raw %>%
+  group_by(year, haul) %>%
+  summarize(
+    CPUE = sum(cpue, na.rm = TRUE),
+    lat = mean(latitude, na.rm = TRUE),
+    long = mean(longitude, na.rm = TRUE),
+    bottom_depth = mean(bottom_depth, na.rm = TRUE),
+    surface_temp = mean(surface_temperature, na.rm = TRUE),
+    bottom_temp = mean(bottom_temperature, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(Haul_ID = row_number()) %>%
+  dplyr::select(Haul_ID, Year = year, Haul_Num = haul, CPUE, lat, long, bottom_depth, surface_temp, bottom_temp)
+```
+
+
+### Regression Models #####
+
+```{r}
+# Initial baseline model
+q1.model <- lm(CPUE ~ lat + long + bottom_depth + surface_temp + bottom_temp, data = haul_df)
+summary(q1.model)
+plot(q1.model, which = 1:2) # Specific diagnostic plots (Residuals vs Fitted, Q-Q)
+
+# Refined model with log transformation and quadratic terms
+q1.model2 <- lm(log(CPUE + 1) ~ lat + long + bottom_temp + surface_temp + bottom_depth + I(bottom_depth^2), data = haul_df)
+summary(q1.model2)
+plot(q1.model2, which = 1:2)
+```
+
+### Classification Analysis ######
+
+```{r}
+
+snowcrab_class <- snowcrab %>%
+  mutate(sex = as.numeric(sex))
+
+n <- nrow(snowcrab_class)
+set.seed(8)
+train_idx <- sample(n, round(n * 0.8, 0))
+test_idx  <- setdiff(1:n, train_idx)
+
+train_set <- snowcrab_class[train_idx, ]
+test_set <- snowcrab_class[test_idx, ]
+
+# Linear Discriminant Analysis (LDA)
+lda.fit <- lda(sex ~ ., data = train_set)
+lda.pred <- predict(lda.fit, test_set)
+table(Predicted = lda.pred$class, Actual = test_set$sex)
+lda.test.error <- mean(lda.pred$class != test_set$sex)
+print(paste("LDA Test Error:", round(lda.test.error, 4)))
+
+# Quadratic Discriminant Analysis (QDA)
+qda.fit <- qda(sex ~ ., data = train_set)
+qda.pred <- predict(qda.fit, test_set)
+table(Predicted = qda.pred$class, Actual = test_set$sex)
+qda.test.error <- mean(qda.pred$class != test_set$sex)
+print(paste("QDA Test Error:", round(qda.test.error, 4)))
+```
+
+
+### 5-Fold Cross Validation ####
+
+```{r}
+set.seed(12)
+k <- 5
+folds <- sample(1:k, nrow(snowcrab_class), replace = TRUE)
+
+lda.cv.errors <- rep(0, k)
+qda.cv.errors <- rep(0, k)
+
+for (i in 1:k) {
+  train_fold <- snowcrab_class[folds != i, ]
+  test_fold  <- snowcrab_class[folds == i, ]
+  
+  # LDA
+  lda.f <- lda(sex ~ ., data = train_fold)
+  lda.p <- predict(lda.f, test_fold)
+  lda.cv.errors[i] <- mean(lda.p$class != test_fold$sex)
+  
+  # QDA
+  qda.f <- qda(sex ~ ., data = train_fold)
+  qda.p <- predict(qda.f, test_fold)
+  qda.cv.errors[i] <- mean(qda.p$class != test_fold$sex)
+}
+
+print(paste("Mean LDA CV Error:", round(mean(lda.cv.errors), 4)))
+print(paste("Mean QDA CV Error:", round(mean(qda.cv.errors), 4)))
+```
+
+### Geo-spatial Tracking and Backcasting
+
+```{r}
+# Standardize geospatial dataframe mapping
+coords <- snowcrab %>%
+  dplyr::select(long = longitude, lat = latitude, year)
+
+# Visualizing Density Shifts Over Time
+ggplot(coords, aes(x = long, y = lat)) +
+  geom_density2d_filled() +
+  geom_density_2d(color = "white", alpha = 0.3) +
+  facet_wrap(vars(year)) +
+  theme_minimal() +
+  labs(title = "Bering Sea Snow Crab Density Trajectory (1975-2018)",
+       x = "Longitude", y = "Latitude")
+
+# Aggregating Average Trajectory Coordinates safely
+coords_avg <- coords %>%
+  group_by(year) %>%
+  summarize(
+    long = mean(long, na.rm = TRUE),
+    lat = mean(lat, na.rm = TRUE)
+  )
+
+# Predictive Spatial Modeling
+q3.model <- lm(cbind(long, lat) ~ year, data = coords_avg)
+summary(q3.model)
+
+# Vectorized Prediction for the Missing Horizon
+future_years <- data.frame(year = 2019:2022)
+predictions <- predict(q3.model, newdata = future_years)
+predictions_df <- data.frame(future_years, predictions)
+
+# Plotting Forecasted Coordinates
+plot(predictions_df$long, predictions_df$lat, 
+     pch = 21, 
+     col = c("darkblue", "darkgreen", "darkred", "darkgoldenrod"),
+     bg = c("blue", "green", "red", "yellow"), 
+     cex = 1.8, lwd = 2,
+     main = "Predicted Average Coordinates Horizon (2019-2022)",
+     xlab = "Predicted Longitude", ylab = "Predicted Latitude")
+
+legend("topright",
+       legend = predictions_df$year,
+       border = c("darkblue", "darkgreen", "darkred", "darkgoldenrod"),
+       fill = c("blue", "green", "red", "yellow"))
+```
+
+

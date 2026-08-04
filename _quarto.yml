@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Kaia Quigg"
+  navbar:
+    background: primary
+    search: false
+    left:
+      - href: index.qmd
+        text: Home
+      - href: crablobby.qmd
+        text: "Predictive Modeling"
+      - href: ecolobby.qmd
+        text: "Macroeconomic Analysis & BI"
+
+format:
+  html:
+    theme: flatly
+    toc: true

@@ -1,0 +1,84 @@
+---
+title: "Macroeconomic Analysis & Business Intelligence"
+page-layout: full
+title-block-banner: false
+---
+
+<style>
+/* 1. Hide Quarto's default title system */
+#title-block-header {
+  display: none !important;
+}
+
+/* 2. Create a unified, un-breakable global grid container */
+.unified-grid-container {
+  max-width: 1100px;
+  margin: 0 auto !important; /* Forces perfect centering on the page */
+  padding: 0 20px !important; /* Identical structural breathing room */
+}
+</style>
+
+::: {.column-screen style="background-color: #f8f9fa; padding: 50px 0 40px 0; margin-bottom: 20px; border-bottom: 1px solid #e0e0e0;"}
+<div class="unified-grid-container">
+
+<h1 style="font-size: 2.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 25px; margin-top: 0;">Macroeconomic Analysis & Business Intelligence</h1>
+
+# Socioeconomic Drivers of Global Ecological Footprints
+### Translating Macroeconomic Metrics and Biocapacity Deficits into Interactive Stakeholder Visualizations
+
+***
+
+### 🗺️ Project Navigation
+* <a href="#README" target="_self" style="font-weight: bold; text-decoration: underline;">README</a> — <em>Jump directly to the full data story and imputation breakdown below.</em>
+* 🐍 **[CODE](ecocode.py)** — *Review the documented Python script executing the regional median imputation and scaling pipelines.*
+* 📊 **[DASHBOARD](https://public.tableau.com)** — *Access the completed, interactive Tableau BI dashboard mapping 152 countries.*
+
+</div>
+:::
+
+<div class="unified-grid-container" style="padding-bottom: 60px;">
+
+## At a Glance: Core Methods, Business Impact, and Key Challenges
+
+::: {.columns style="display: flex; gap: 40px; margin-bottom: 40px;"}
+
+::: {.column width="50%"}
+### Core Methodologies
+* Interactive BI Dashboard Design
+* Advanced Missing Data Imputation
+* Categorical Feature Mapping
+* Macroeconomic Scale Normalization
+* Quantitative Exploratory Data Analysis (EDA)
+:::
+
+::: {.column width="50%"}
+### Business Impact & Domain Value
+* **Bridging Code and Executive BI:** I engineered a clean data handoff by using Python to execute heavy statistical cleaning and programmatic parsing, then exported the results directly into Tableau to build an interactive dashboard tailored for non-technical stakeholders.
+
+* **Handling Incomplete Real-World Datasets:** Instead of dropping messy or missing records, I designed a multi-step data imputation strategy using regional medians, preserving critical global data rows without biasing the dataset.
+:::
+
+:::
+
+***
+
+## Key Challenge: Feature Confounding & Model Multicollinearity
+
+* **The Technical Hurdle:** Initial attempts to map human development indicators against sustainability metrics ran into a major algorithmic trap: severe **Multicollinearity**. While individual indicators like the Human Development Index (HDI) initially showed immense predictive significance ($p = 0.000$), introducing nested features like `Income Group` caused HDI's statistical significance to completely evaporate ($p = 0.336$), triggering an extreme condition number warning ($4.73 \times 10^5$) and threatening model reliability.
+
+* **The Solution:** Rather than relying on overlapping raw indices, I re-architected the workflow to separate predictive modeling from visual exploratory data analysis (EDA). I isolated the variance inflation by tracking how economic status absorbed human development flags, then transitioned the final data architecture into a split visual framework. This solution preserved the model's high testing performance ($R^2 = 0.78$) while providing a clean, unconfounded dataset ready for cross-platform visual deployment.
+
+***
+## <span id="README"></span>README
+
+
+### Executive Summary
+Can a nation advance its human and economic development without completely bankrupting its natural environment? This project evaluates the fragile boundary between economic growth and global biocapacity, processing a massive macroeconomic tracking dataset compiled by the Global Footprint Network spanning 15,000 observations per country across 182 nations.
+
+By pairing an automated data validation pipeline in Python with a front-end business intelligence deployment in Tableau, this study uncovers exactly how industrial development alters the planet's resource balance.
+
+**The Core Finding:** The analysis establishes that regional resource deficits are fundamentally **infrastructure and carbon bypass problems** rather than localized land mismanagement. When isolating individual resource sectors (cropland, grazing land, and forests), most global regions maintain a baseline ecological surplus. However, the introduction of industrial carbon footprints instantly obliterates these reserves, proving that mitigating environmental deficits requires targeted infrastructure overhauls rather than traditional resource rationing.
+
+***
+
+### Core Research Questions & Key Insights

@@ -1,0 +1,109 @@
+---
+title: "Relational Database Engineering & E-Commerce SQL Analytics"
+page-layout: full
+title-block-banner: false
+---
+
+<style>
+/* 1. Hide Quarto's default title system */
+#title-block-header {
+  display: none !important;
+}
+
+/* 2. Create a unified, un-breakable global grid container */
+.unified-grid-container {
+  max-width: 1100px;
+  margin: 0 auto !important; /* Forces perfect centering on the page */
+  padding: 0 20px !important; /* Identical structural breathing room */
+}
+</style>
+
+::: {.column-screen style="background-color: #f8f9fa; padding: 50px 0 40px 0; margin-bottom: 20px; border-bottom: 1px solid #e0e0e0;"}
+<div class="unified-grid-container">
+
+<h1 style="font-size: 2.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 25px; margin-top: 0;">Relational Database Engineering & E-Commerce SQL Analytics</h1>
+
+# $13.2M E-Commerce Performance & Operational Analysis
+### Uncovering Revenue Drivers, Fulfillment Bottlenecks, and Customer Lifetime Value in PostgreSQL
+
+***
+
+### 🗺️ Project Navigation
+* <a href="#README" target="_self" style="font-weight: bold; text-decoration: underline;">README</a> — <em>Jump directly to the full analytical breakdown below.</em>
+* **[CODE](sqlproject.html)** — *Review the documented PostgreSQL queries, database schema definitions, and CTE execution logic.*
+* **[DATA](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)** — *E-Commerce relational database files (~100k records across 8 CSV tables).*
+
+</div>
+:::
+
+<div class="unified-grid-container" style="padding-bottom: 60px;">
+
+## At a Glance: Core Methods, Business Impact, and Key Challenges
+
+::: {.columns style="display: flex; gap: 40px; margin-bottom: 40px;"}
+
+::: {.column width="50%"}
+### Core Methodologies
+* Relational Schema Design & Constraints
+* Multi-Table Relational Joins (`INNER`, `LEFT`)
+* Group Aggregations & Conditional Logic (`CASE WHEN`)
+* Time-Series & Seasonality Aggregation (`DATE_TRUNC`)
+* Window Functions (`NTILE` Customer Segmentation)
+* Common Table Expressions (CTEs)
+:::
+
+::: {.column width="50%"}
+### Business Impact & Domain Value
+* **Quantifying Logistics Penalties:** Isolated the direct financial and reputational cost of fulfillment bottlenecks, providing leadership with actionable metrics on delivery thresholds.
+
+* **Customer Segmentation Strategy:** Built an RFM monetary quartile model to categorize customer lifetime spend, pinpointing top VIP revenue drivers for loyalty program targeting.
+:::
+
+:::
+
+***
+
+## Key Challenge: Relational Integrity & Operational Data Noise
+
+* **The Technical Hurdle:** Raw e-commerce export tables contained over 100,000 unindexed transaction rows spread across 8 separate datasets. Initial pipeline attempts faced join fan-out issues (duplicate row counts when joining item-level prices with order-level payments) and foreign key mismatches due to unmapped category translation tables.
+
+* **The Solution:** Engineered a strict normalized relational schema in PostgreSQL, establishing primary/foreign key constraints and utilizing `COUNT(DISTINCT order_id)` to prevent aggregation inflation. Isolated operational noise by filtering explicitly for completed delivery states (`order_status = 'delivered'`), ensuring that revenue calculations reflected actual cash flow.
+
+***
+## <span id="README"></span>README
+
+
+### Executive Summary
+This project analyzes **96,478 delivered orders** totaling **$13.2M+ in gross revenue** from a major Brazilian e-commerce marketplace. Operating as the Lead Data Analyst, I designed the relational database architecture in **PostgreSQL** (via VS Code), managed bulk data ingestion across 8 interconnected tables, and authored structured analytical queries to answer executive-level business questions.
+
+The analysis provides clear visibility into platform revenue drivers, payment processing habits, seasonal growth spikes, and the severe customer rating penalties caused by fulfillment delays.
+
+***
+
+### Core Business Questions & Key Insights
+
+#### 1. What is the baseline revenue volume and top product category performance?
+* **Method:** Multi-table `JOIN`s connecting item pricing, product specs, and English translation mappings, aggregated by revenue volume.
+
+* **Insight:** Total platform gross revenue reached **$13,221,498.11** across **96,478** completed orders, with an average item price of **$119.98**. **`health_beauty`** took the #1 category spot (**$1.26M** revenue across 8,836 orders), followed closely by `watches_gifts` ($1.20M) and `bed_bath_table` ($1.04M).
+
+#### 2. How do customers pay, and what are the credit card financing habits?
+* **Method:** Group aggregations and mean installment calculations on transaction methods.
+
+* **Insight:** **Credit Cards** dominate the platform, driving **76.2% of all transactions** and **$12.54M** in total value. Furthermore, credit card customers choose an average of **3.5 installments**, demonstrating that flexible financing options are critical for conversion in this market. Cash-based *Boleto* payments ranked second ($2.87M).
+
+#### 3. How severely do fulfillment delays harm customer satisfaction?
+* **Method:** Conditional logic (`CASE WHEN`) flagging orders delivered past their estimated delivery date, joined with customer review scores.
+
+* **Insight:** On-time orders (88,163 orders) maintained a high average satisfaction rating of **4.29 / 5.00**. However, late orders (7,661 orders) suffered a steep rating collapse to **2.57 / 5.00**—a massive **1.72-star drop**. While late deliveries accounted for only ~8% of total volume, they disproportionately degraded brand trust.
+
+#### 4. How can we segment customers by lifetime monetary value?
+* **Method:** Common Table Expression (CTE) paired with PostgreSQL Window Functions (`NTILE(4)`).
+
+* **Insight:** Segmented the entire customer base into 4 distinct spend quartiles. Isolated the top 25% VIP spenders (Quartile 1) and identified high-value outliers, including a top single customer generating **$13,664.08** in total order volume.
+
+***
+
+## Database Architecture & Ingestion Pipeline
+
+The database (`ecommerce_db`) consists of **8 relational tables**:

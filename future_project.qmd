@@ -1,0 +1,8 @@
+---
+title: "Upcoming Project Showcase"
+---
+
+<br>
+
+### Project Under Construction 🚧
+This section will house my next end-to-end data science study. Check back soon for the full analysis!
