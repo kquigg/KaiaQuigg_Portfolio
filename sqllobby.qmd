@@ -31,7 +31,7 @@ title-block-banner: false
 ### 🗺️ Project Navigation
 * <a href="#README" target="_self" style="font-weight: bold; text-decoration: underline;">README</a> — <em>Jump directly to the full analytical breakdown below.</em>
 * **[CODE](sqlproject.html)** — *Review the documented PostgreSQL queries, database schema definitions, and CTE execution logic.*
-* **[DATA](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce){target="_blank"}** — *E-Commerce relational database files (~100k records across 8 CSV tables).*
+* **[DATA](data/olist_data.zip)** — *E-Commerce relational database files (~100k records across 8 CSV tables).*
 
 </div>
 :::
