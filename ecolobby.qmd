@@ -1,5 +1,5 @@
 ---
-title: "Macroeconomic Analysis & Business Intelligence"
+title: "Sustainability Analytics & Business Intelligence"
 page-layout: full
 title-block-banner: false
 ---
@@ -13,25 +13,28 @@ title-block-banner: false
 /* 2. Create a unified, un-breakable global grid container */
 .unified-grid-container {
   max-width: 1100px;
-  margin: 0 auto !important; /* Forces perfect centering on the page */
-  padding: 0 20px !important; /* Identical structural breathing room */
+  margin: 0 auto !important;
+  padding: 0 20px !important;
 }
 </style>
 
 ::: {.column-screen style="background-color: #f8f9fa; padding: 50px 0 40px 0; margin-bottom: 20px; border-bottom: 1px solid #e0e0e0;"}
 <div class="unified-grid-container">
 
-<h1 style="font-size: 2.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 25px; margin-top: 0;">Macroeconomic Analysis & Business Intelligence</h1>
+<h1 style="font-size: 2.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 25px; margin-top: 0;">Global Sustainability Analytics & Business Intelligence</h1>
 
 # Socioeconomic Drivers of Global Ecological Footprints
-### Translating Macroeconomic Metrics and Biocapacity Deficits into Interactive Stakeholder Visualizations
+### Translating Macroeconomic Metrics, Resource Demand, and Biocapacity Trends into Interactive Decision-Support Analytics
 
 ***
 
-### 🗺️ Project Navigation
-* <a href="#README" target="_self" style="font-weight: bold; text-decoration: underline;">README</a> — <em>Jump directly to the full data story and imputation breakdown below.</em>
-* 🐍 **[CODE](ecocode.py)** — *Review the documented Python script executing the regional median imputation and scaling pipelines.*
-* 📊 **[DASHBOARD](https://public.tableau.com)** — *Access the completed, interactive Tableau BI dashboard mapping 152 countries.*
+### Project Navigation
+
+* <a href="#README" target="_self" style="font-weight: bold; text-decoration: underline;">README</a> — <em>Jump directly to the full sustainability analysis and data engineering workflow.</em>
+
+* **[CODE](ecocode.py)** — *Review the documented Python preprocessing pipeline, regional imputation strategy, and statistical analysis workflow.*
+
+* **[DASHBOARD](YOUR_TABLEAU_LINK_HERE)** — *Explore the interactive Tableau dashboard analyzing global ecological trends across 182 countries.*
 
 </div>
 :::
@@ -43,42 +46,141 @@ title-block-banner: false
 ::: {.columns style="display: flex; gap: 40px; margin-bottom: 40px;"}
 
 ::: {.column width="50%"}
+
 ### Core Methodologies
-* Interactive BI Dashboard Design
-* Advanced Missing Data Imputation
-* Categorical Feature Mapping
-* Macroeconomic Scale Normalization
-* Quantitative Exploratory Data Analysis (EDA)
+
+* Exploratory Data Analysis (EDA)
+* Statistical Data Imputation
+* Feature Engineering & Scaling
+* Socioeconomic Indicator Analysis
+* Multivariate Regression Modeling
+* Interactive Tableau Dashboard Development
+
 :::
 
 ::: {.column width="50%"}
+
 ### Business Impact & Domain Value
-* **Bridging Code and Executive BI:** I engineered a clean data handoff by using Python to execute heavy statistical cleaning and programmatic parsing, then exported the results directly into Tableau to build an interactive dashboard tailored for non-technical stakeholders.
 
-* **Handling Incomplete Real-World Datasets:** Instead of dropping messy or missing records, I designed a multi-step data imputation strategy using regional medians, preserving critical global data rows without biasing the dataset.
+* **Transforming Complex Global Data into Decisions:** I converted large-scale sustainability datasets into interactive visual analytics that allow stakeholders to identify relationships between economic development, resource consumption, and environmental pressure.
+
+* **Preserving Data Integrity Across Global Records:** Instead of removing incomplete country-level observations, I engineered a regional statistical imputation framework that maintained dataset coverage while reducing geographic bias.
+
 :::
 
 :::
 
 ***
 
-## Key Challenge: Feature Confounding & Model Multicollinearity
+## Key Challenge: Feature Confounding & Global Data Complexity
 
-* **The Technical Hurdle:** Initial attempts to map human development indicators against sustainability metrics ran into a major algorithmic trap: severe **Multicollinearity**. While individual indicators like the Human Development Index (HDI) initially showed immense predictive significance ($p = 0.000$), introducing nested features like `Income Group` caused HDI's statistical significance to completely evaporate ($p = 0.336$), triggering an extreme condition number warning ($4.73 \times 10^5$) and threatening model reliability.
+* **The Technical Hurdle:** Modeling relationships between socioeconomic development and ecological impact introduced significant feature overlap. Variables such as Human Development Index (HDI), income classification, and economic indicators captured similar underlying patterns, creating multicollinearity that threatened model interpretability.
 
-* **The Solution:** Rather than relying on overlapping raw indices, I re-architected the workflow to separate predictive modeling from visual exploratory data analysis (EDA). I isolated the variance inflation by tracking how economic status absorbed human development flags, then transitioned the final data architecture into a split visual framework. This solution preserved the model's high testing performance ($R^2 = 0.78$) while providing a clean, unconfounded dataset ready for cross-platform visual deployment.
+* **The Solution:** I redesigned the analytical workflow by separating predictive modeling from exploratory visualization. Correlated socioeconomic variables were evaluated independently during statistical modeling, while economic classifications were preserved for dashboard segmentation. This maintained strong predictive performance ($R^2 = 0.78$) while producing a clearer analytical framework.
 
 ***
+
 ## <span id="README"></span>README
 
-
 ### Executive Summary
-Can a nation advance its human and economic development without completely bankrupting its natural environment? This project evaluates the fragile boundary between economic growth and global biocapacity, processing a massive macroeconomic tracking dataset compiled by the Global Footprint Network spanning 15,000 observations per country across 182 nations.
 
-By pairing an automated data validation pipeline in Python with a front-end business intelligence deployment in Tableau, this study uncovers exactly how industrial development alters the planet's resource balance.
+How can societies continue economic development without exceeding the planet's ecological capacity?
 
-**The Core Finding:** The analysis establishes that regional resource deficits are fundamentally **infrastructure and carbon bypass problems** rather than localized land mismanagement. When isolating individual resource sectors (cropland, grazing land, and forests), most global regions maintain a baseline ecological surplus. However, the introduction of industrial carbon footprints instantly obliterates these reserves, proving that mitigating environmental deficits requires targeted infrastructure overhauls rather than traditional resource rationing.
+This project analyzes global ecological footprint trends by combining socioeconomic indicators, resource consumption metrics, and biocapacity measurements across 182 countries.
+
+Using Python-based data engineering workflows and interactive Tableau deployment, this analysis investigates how economic development patterns influence environmental demand and identifies the primary drivers behind global ecological overshoot.
+
+The project integrates statistical preprocessing, missing-data management, exploratory analysis, and business intelligence visualization to transform complex sustainability datasets into accessible decision-support tools.
+
+**The Core Finding:** Global ecological deficits are driven primarily by **carbon-intensive infrastructure and consumption patterns**, rather than simple land resource scarcity. While many biological resource categories remain near equilibrium, fossil-fuel-driven economic systems create the largest imbalance between human demand and Earth's regenerative capacity.
 
 ***
 
-### Core Research Questions & Key Insights
+# Core Research Questions & Key Insights
+
+#### 1. How does economic development influence ecological demand?
+
+* **Method:** Exploratory analysis comparing ecological footprint measurements with socioeconomic indicators including HDI, income classification, and economic development metrics.
+
+* **Insight:** Higher levels of economic development correlate strongly with increased ecological demand. Developed economies generally demonstrate larger ecological footprints due to increased energy consumption, infrastructure intensity, and carbon emissions.
+
+***
+
+#### 2. Which resource categories contribute most to global ecological overshoot?
+
+* **Method:** Sector-level decomposition of ecological footprint components including carbon emissions, cropland demand, grazing land, forest products, and fishing grounds.
+
+* **Insight:** Carbon footprint represents the dominant contributor to ecological pressure. Agricultural and biological resource categories frequently remain closer to sustainable thresholds, while energy-intensive infrastructure creates the largest global imbalance.
+
+***
+
+#### 3. Can socioeconomic indicators predict sustainability outcomes?
+
+* **Method:** Multivariate statistical modeling using economic development variables and ecological footprint metrics.
+
+* **Insight:** Socioeconomic indicators explain substantial variation in ecological outcomes ($R^2 = 0.78$). However, individual economic predictors cannot be interpreted independently due to strong relationships between development indicators, requiring careful feature selection and validation.
+
+***
+
+# Data Engineering & Pipeline Development
+
+## The Missing Data Challenge
+
+The Global Footprint Network dataset contained incomplete socioeconomic records across countries, creating challenges for consistent global comparison.
+
+**The Problem:** Removing incomplete observations would disproportionately exclude countries with limited reporting infrastructure, introducing geographic bias into downstream analysis.
+
+**The Solution:** I developed a regional median imputation workflow that preserved global coverage while maintaining realistic socioeconomic distributions.
+
+The pipeline:
+
+* Validated missing-value patterns across global records
+* Grouped observations by geographic region
+* Applied regional statistical baselines for missing values
+* Preserved country-level representation for visualization and modeling
+
+***
+
+# Statistical Analysis & Feature Engineering
+
+## Resolving Multicollinearity in Socioeconomic Indicators
+
+Initial modeling revealed strong relationships between economic classification variables and human development measurements.
+
+HDI demonstrated predictive significance independently, but introducing overlapping categorical variables reduced interpretability due to shared variance.
+
+**The Analytical Fix:**
+
+* Removed redundant predictors during regression modeling
+* Evaluated economic variables independently
+* Used categorical classifications primarily for visualization
+* Preserved interpretability for stakeholder communication
+
+***
+
+# Interactive Dashboard Development
+
+## Translating Sustainability Metrics into Stakeholder Insights
+
+The final Tableau dashboard transformed complex ecological accounting metrics into accessible visual stories.
+
+Dashboard capabilities include:
+
+* Global ecological footprint comparisons
+* Country-level sustainability profiles
+* Biocapacity deficit visualization
+* Economic development segmentation
+* Resource category breakdowns
+* Regional sustainability trend analysis
+
+By combining Python-based data engineering with Tableau visualization, this project demonstrates the complete analytics workflow:
+
+**Raw Global Data → Statistical Processing → Validated Metrics → Interactive Decision Support**
+
+***
+
+# Conclusion: Connecting Data, Development, and Sustainability
+
+This analysis demonstrates that ecological sustainability challenges cannot be explained by population size alone. Instead, environmental pressure is strongly shaped by infrastructure systems, consumption patterns, and economic structures.
+
+Through automated data cleaning, statistical validation, and interactive visualization, this project provides a reproducible framework for translating complex sustainability datasets into actionable insights.

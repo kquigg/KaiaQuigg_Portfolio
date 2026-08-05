@@ -101,30 +101,34 @@ My work spans environmental data, renewable energy, operational analytics, and p
 :::
 
 ::: {.container id="featured-projects" style="padding-top: 20px;"}
+::: {.container id="featured-projects" style="padding-top: 20px;"}
+
 ## Featured Projects
 
-### [Relational Database Engineering & E-Commerce SQL Analytics](ecommerce-sql-analysis.qmd)
-Executive Business Performance & Operational Analysis across $13.2M in Transactions
+### [SQL Analytics & Relational Database Engineering](ecommerce-sql-analysis.qmd)
+**Business Performance Analysis Across 100K+ E-Commerce Transactions**
 
-* **The Core Skills:** Advanced SQL (PostgreSQL), Relational Database Schema Design, Window Functions (`NTILE`), Complex Multi-table `JOIN`s, Business Intelligence & Customer Segmentation
+* **The Core Skills:** PostgreSQL, Relational Database Design, Advanced SQL, Window Functions, Business Metrics, Customer Segmentation
 
-* **The Story:** Built a relational PostgreSQL database from scratch in VS Code across 8 interconnected tables representing 100k+ transactions. Authored structured SQL queries to isolate $13.2M in revenue trends, quantify a 1.72-star customer satisfaction penalty tied to fulfillment delays, and segment high-value VIP accounts using monetary quartiles.
+* **The Story:** Built a normalized PostgreSQL database from raw e-commerce transaction data and developed analytical SQL workflows to uncover revenue drivers, customer segments, and operational bottlenecks. Identified $13.2M in transaction value, quantified fulfillment-related customer satisfaction impacts, and created business-ready insights from complex relational data.
 
 
 ### [Predictive Modeling & Geospatial Analytics](crablobby.qmd)
-Multivariate Back-Casting Analysis of Ecological Collapse
+**Statistical Back-Casting of the Eastern Bering Sea Snow Crab Collapse**
 
-* **The Core Skills:** Advanced Statistical Analysis, Predictive Modeling, Historical Back-casting, Spatial Analytics
+* **The Core Skills:** Statistical Modeling, Predictive Analytics, Spatial Analysis, Regression, Machine Learning
 
-* **The Story:** Solved a critical multi-year NOAA data blackout by engineering a synchronized tidyverse pipeline and building a predictive engine to back-cast population movements—ultimately identifying a mathematical "climate trap' that led to a population collapse.
+* **The Story:** Engineered a historical forecasting framework using NOAA fisheries data to reconstruct population movement during a critical data gap. Through spatial modeling and statistical analysis, identified the environmental constraints that created a "climate trap" leading to population collapse.
 
 
-### [Macroeconomic Analysis & Business Intelligence](ecolobby.qmd)
-Socioeconomic Drivers of Global Ecological Footprints
+### [Global Sustainability Analytics & Business Intelligence](ecolobby.qmd)
+**Interactive Analysis of Economic Development, Resource Demand, and Ecological Footprints**
 
-* **The Core Skills:** Interactive BI Dashboarding, Tableau, Data Imputation, Categorical Data Parsing, Exploratory Data Analysis (EDA)
+* **The Core Skills:** Tableau Dashboarding, Python Data Engineering, Exploratory Data Analysis, Data Imputation, Stakeholder Reporting
 
-* **The Story:** Focused on translating a massive, messy 15,000-point global sustainability dataset into an interactive visual story. Built a Python workflow to impute missing global metrics and map inconsistent categorical fields, then designed a standalone Tableau dashboard that allows stakeholders to filter and explore regional ecological deficits on demand.
+* **The Story:** Transformed a complex global sustainability dataset into an interactive decision-support dashboard. Built automated Python workflows to clean, validate, and structure international environmental metrics, enabling stakeholders to explore relationships between economic development and ecological impact.
+
+:::
 :::
 
 :::

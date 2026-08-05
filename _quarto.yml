@@ -1,6 +1,5 @@
 project:
-  type: website
-  resources:
+  type: websiteresources:
     - "data/*"
   output-dir: _site
 
@@ -12,10 +11,12 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: ecommerce-sql-analysis.qmd
+        text: "SQL Analytics"
       - href: crablobby.qmd
         text: "Predictive Modeling"
       - href: ecolobby.qmd
-        text: "Macroeconomic Analysis & BI"
+        text: "Sustainability BI"
 
 format:
   html:
