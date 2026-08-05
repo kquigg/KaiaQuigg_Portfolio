@@ -31,8 +31,7 @@ title-block-banner: false
 ### 🗺️ Project Navigation
 * <a href="#README" target="_self" style="font-weight: bold; text-decoration: underline;">README</a> — <em>Jump directly to the full analytical breakdown below.</em>
 * **[CODE](sql_project.html)** — *Review the documented PostgreSQL queries, database schema definitions, and CTE execution logic.*
-* **[DATA](data/olist_customers_dataset.csv)** — *E-Commerce relational database files (~100k records across 8 CSV tables).*
-
+* **[DATA](https://github.com/kquigg/KaiaQuigg_Portfolio/blob/main/data/olist_data.zip)** — *E-Commerce relational database files (~100k records across 8 CSV tables).*
 </div>
 :::
 
