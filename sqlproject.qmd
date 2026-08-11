@@ -15,7 +15,8 @@ This document contains the complete PostgreSQL analysis script executed against 
 
 Before performing analysis, table integrity was confirmed across all 8 ingested tables.
 
-```sql
+```{sql}
+#| eval: false
 SELECT 'customers' AS table_name, COUNT(*) AS total_rows FROM customers
 UNION ALL
 SELECT 'orders', COUNT(*) FROM orders
@@ -31,8 +32,10 @@ UNION ALL
 SELECT 'sellers', COUNT(*) FROM sellers
 UNION ALL
 SELECT 'product_category_name_translation', COUNT(*) FROM product_category_name_translation;
-
-
+```
+## Revenue and Order Analytics
+```{sql}
+#| eval: false
 SELECT 
     COUNT(DISTINCT o.order_id) AS total_orders,
     ROUND(SUM(i.price), 2) AS total_revenue_usd,
@@ -41,8 +44,10 @@ FROM orders o
 JOIN order_items i 
     ON o.order_id = i.order_id
 WHERE o.order_status = 'delivered';
-
-
+```
+## Top Product Categories by Revenue
+```{sql}
+#| eval: false
 SELECT 
     t.product_category_name_english AS category_name,
     COUNT(DISTINCT i.order_id) AS total_orders,
@@ -55,8 +60,10 @@ JOIN product_category_name_translation t
 GROUP BY t.product_category_name_english
 ORDER BY total_revenue_usd DESC
 LIMIT 10;
-
-
+```
+## Payment Type Breakdown
+```{sql}
+#| eval: false
 SELECT 
     payment_type,
     COUNT(order_id) AS total_transactions,
@@ -65,8 +72,10 @@ SELECT
 FROM order_payments
 GROUP BY payment_type
 ORDER BY total_payment_value DESC;
-
-
+```
+## Monthly Revenue Trends
+```{sql}
+#| eval: false
 SELECT 
     DATE_TRUNC('month', o.order_purchase_timestamp)::DATE AS order_month,
     COUNT(DISTINCT o.order_id) AS total_orders,
@@ -77,8 +86,10 @@ JOIN order_payments p
 WHERE o.order_status = 'delivered'
 GROUP BY 1
 ORDER BY order_month ASC;
-
-
+```
+## Delivery Performance and Customer Satisfaction
+```{sql}
+#| eval: false
 SELECT 
     CASE 
         WHEN o.order_delivered_customer_date > o.order_estimated_delivery_date THEN 'Late'
@@ -92,8 +103,10 @@ JOIN order_reviews r
 WHERE o.order_status = 'delivered'
   AND o.order_delivered_customer_date IS NOT NULL
 GROUP BY 1;
-
-
+```
+## Customer Segmentation (RFM Monetary Quartiles)
+```{sql}
+#| eval: false
 WITH customer_metrics AS (
     SELECT 
         c.customer_unique_id,
@@ -114,6 +127,6 @@ SELECT
 FROM customer_metrics
 ORDER BY total_spent DESC
 LIMIT 10;
-
+```
 
 
