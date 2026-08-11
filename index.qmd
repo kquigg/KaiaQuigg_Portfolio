@@ -1,21 +1,27 @@
 ---
 title: ""
 page-layout: full
+toc: false
 ---
 
-::: {.column-screen style="background-color: #f8f9fa; padding: 70px 0; margin-bottom: 40px;"}
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+::: {.column-screen style="background-color: #f8f5f0; padding: 95px 0 100px; margin-bottom: 0;"}
 ::: {.container style="max-width: 1200px;"}
 ::: {.columns style="display: flex; align-items: flex-start;"}
 
 ::: {.column width="50%"}
-<br>
+
 <span style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: #666666; font-size: 1.5rem;">Data Analyst & Storyteller</span>
 
-<h1 style="font-size: 3rem; font-weight: 700; margin-top: 15px; margin-bottom: 25px; line-height: 1.2;">Data with context. Insights with *impact*.</h1>
+<h1 style="font-size: 3.4rem; font-weight: 700; margin-top: 18px; margin-bottom: 28px; line-height: 1.15;">Data with context. Insights with <em>impact.</em></h1>
 
-<p style="font-size: 1.15rem; color: #4a4a4a; line-height: 1.6; margin-bottom: 35px;">With an M.S. in Data Science and a background in scientific research, I bridge the gap between complex datasets and clear insights through analysis, visualization, and communication.</p>
+<p style="font-size: 1.18rem; color: #4a4a4a; line-height: 1.65; margin-bottom: 38px;">With an M.S. in Data Science and a background in scientific research, I bridge the gap between complex datasets and clear insights through analysis, visualization, and communication.</p>
 
 [View My Work](#featured-projects){.btn .btn-dark .btn-lg role="button" style="border-radius: 4px; padding: 12px 24px; font-weight: 500;"} &nbsp;&nbsp; [Get in Touch](mailto:kaia.quigg@example.com){.btn .btn-outline-dark .btn-lg role="button" style="border-radius: 4px; padding: 12px 24px; font-weight: 500;"}
+
 :::
 
 ::: {.column width="8%"}
@@ -23,73 +29,107 @@ page-layout: full
 :::
 
 ::: {.column width="45%"}
-::: {style="width: 100%; display: flex; flex-direction: column;"}
 
-<!-- LOCATION ROW -->
-::: {style="display: flex; padding: 20px 0; border-bottom: 1px solid #e0e0e0;"}
-<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #888888; width: 35%;">Location</div>
-<div style="font-size: 0.95rem; font-weight: 500; color: #1a1a1a; width: 65%; text-align: left; line-height: 1.6;">
+<div style="width: 100%; display: flex; flex-direction: column;">
+
+<!-- LOCATION -->
+<div style="display: flex; padding: 20px 0; border-bottom: 1px solid #d5d7d2;">
+<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777; width: 35%;">Location</div>
+<div style="font-size: 0.98rem; font-weight: 500; color: #1a1a1a; width: 65%; text-align: left; line-height: 1.6;">
 United States (Remote)<br>
 Rhode Island / Connecticut (Hybrid & On-site)
 </div>
-:::
+</div>
 
-<!-- EDUCATION ROW -->
-::: {style="display: flex; padding: 20px 0; border-bottom: 1px solid #e0e0e0;"}
-<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #888888; width: 35%;">Education</div>
-<div style="font-size: 0.95rem; font-weight: 500; color: #1a1a1a; width: 65%; text-align: left; line-height: 1.7;">
+<!-- EDUCATION -->
+<div style="display: flex; padding: 20px 0; border-bottom: 1px solid #d5d7d2;">
+<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777; width: 35%;">Education</div>
+<div style="font-size: 0.98rem; font-weight: 500; color: #1a1a1a; width: 65%; text-align: left; line-height: 1.7;">
 • MS Data Science · URI<br>
 • BS Ecology & Evolution · UCSD
 </div>
-:::
+</div>
 
-<!-- SPECIALIZATION ROW -->
-::: {style="display: flex; padding: 20px 0; border-bottom: 1px solid #e0e0e0;"}
-<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #888888; width: 35%;">Specialization</div>
-<div style="font-size: 0.95rem; font-weight: 500; color: #1a1a1a; width: 65%; text-align: left; line-height: 1.7;">
+<!-- SPECIALIZATION -->
+<div style="display: flex; padding: 20px 0;">
+<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777; width: 35%;">Specialization</div>
+<div style="font-size: 0.98rem; font-weight: 500; color: #1a1a1a; width: 65%; text-align: left; line-height: 1.7;">
 • Data Storytelling & Visualization<br>
 • Statistical Analysis & Predictive Modeling<br>
 • Reporting & Cross-functional Collaboration
 </div>
-:::
-
-<!-- TECH STACK ROW WITH SUB-CATEGORIES -->
-::: {style="display: flex; padding: 20px 0;"}
-<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #888888; width: 35%;">Tech Stack</div>
-<div style="width: 65%; text-align: left; font-size: 0.88rem; color: #1a1a1a; line-height: 1.4;">
-
-<div style="margin-bottom: 12px;">
-<strong style="font-size: 0.85rem; letter-spacing: 0.5px; color: #555555;">LANGUAGES & TOOLS</strong><br>
-R · Python · SQL · Advanced Excel 
 </div>
 
-<div style="margin-bottom: 12px;">
-<strong style="font-size: 0.85rem; letter-spacing: 0.5px; color: #555555;">DATA ENGINEERING</strong><br>
+</div>
+
+:::
+:::
+:::
+:::
+
+
+<!-- =========================
+     SKILLS SECTION
+========================= -->
+
+::: {.container style="max-width: 1200px; padding: 65px 0 60px;"}
+
+<h2 id="skills" style="font-size: 2rem; font-weight: 700; margin-bottom: 40px;">Skills</h2>
+
+<div style="display: flex; flex-direction: column;">
+
+<!-- LANGUAGES & TOOLS -->
+<div style="display: flex; padding: 24px 0; border-top: 1px solid #e0e0e0;">
+<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777; width: 30%;">Languages & Tools</div>
+<div style="width: 70%; font-size: 1.05rem; color: #2a2a2a;">
+R · Python · SQL · Advanced Excel
+</div>
+</div>
+
+<!-- DATA ENGINEERING -->
+<div style="display: flex; padding: 24px 0; border-top: 1px solid #e0e0e0;">
+<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777; width: 30%;">Data Engineering</div>
+<div style="width: 70%; font-size: 1.05rem; color: #2a2a2a;">
 pandas · NumPy · scikit-learn · tidyverse · Git & GitHub
 </div>
+</div>
 
-<div>
-<strong style="font-size: 0.85rem; letter-spacing: 0.5px; color: #555555;">BI & VISUALIZATION</strong><br>
+<!-- BI & VISUALIZATION -->
+<div style="display: flex; padding: 24px 0; border-top: 1px solid #e0e0e0;">
+<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777; width: 30%;">BI & Visualization</div>
+<div style="width: 70%; font-size: 1.05rem; color: #2a2a2a;">
 Tableau · Power BI · Matplotlib · Seaborn
 </div>
+</div>
+
+<!-- ANALYTICS -->
+<div style="display: flex; padding: 24px 0; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;">
+<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777; width: 30%;">Analytics</div>
+<div style="width: 70%; font-size: 1.05rem; color: #2a2a2a;">
+Statistical Analysis · Predictive Modeling · Machine Learning · Data Storytelling
+</div>
+</div>
 
 </div>
-:::
 
 :::
-:::
 
-:::
-:::
-:::
 
-<!-- MAIN CONTENT AREA (WHITE BACKGROUND) -->
-::: {.container style="max-width: 1200px; padding-bottom: 40px;"}
+<!-- =========================
+     ABOUT ME
+========================= -->
 
-<!-- STANDALONE ABOUT ME ROW -->
-::: {style="display: flex; padding: 30px 0; border-bottom: 1px solid #e0e0e0; margin-bottom: 40px;"}
-<div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #888888; width: 35%;">About Me</div>
-<div style="width: 65%; text-align: left; font-size: 1.05rem; color: #2a2a2a; line-height: 1.65; padding-right: 10px;">
+::: {.container style="max-width: 1200px; padding: 20px 0 60px;"}
+
+<h2 id="about-me" style="font-size: 2rem; font-weight: 700; margin-bottom: 35px;">About Me</h2>
+
+<div style="display: flex;">
+
+<div style="width: 30%; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777;">
+Background
+</div>
+
+<div style="width: 70%; text-align: left; font-size: 1.05rem; color: #2a2a2a; line-height: 1.65; padding-right: 10px;">
 
 I began my career in scientific research, studying complex natural systems and using data to answer meaningful questions. That experience sparked a deeper interest in analytics and ultimately led me to pursue an M.S. in Data Science.
 
@@ -98,14 +138,22 @@ Today, I combine a researcher's curiosity with the technical skills of a data sc
 My work spans environmental data, renewable energy, operational analytics, and predictive modeling, but the goal remains the same: find the signal, understand the story, and communicate it clearly.
 
 </div>
+
+</div>
+
 :::
 
-::: {.container id="featured-projects" style="padding-top: 20px;"}
-::: {.container id="featured-projects" style="padding-top: 20px;"}
+
+<!-- =========================
+     FEATURED PROJECTS
+========================= -->
+
+::: {.container id="featured-projects" style="max-width: 1200px; padding: 20px 0 70px;"}
 
 ## Featured Projects
 
 ### [SQL Analytics & Relational Database Engineering](ecommerce-sql-analysis.qmd)
+
 **Business Performance Analysis Across 100K+ E-Commerce Transactions**
 
 * **The Core Skills:** PostgreSQL, Relational Database Design, Advanced SQL, Window Functions, Business Metrics, Customer Segmentation
@@ -114,6 +162,7 @@ My work spans environmental data, renewable energy, operational analytics, and p
 
 
 ### [Predictive Modeling & Geospatial Analytics](crablobby.qmd)
+
 **Statistical Back-Casting of the Eastern Bering Sea Snow Crab Collapse**
 
 * **The Core Skills:** Statistical Modeling, Predictive Analytics, Spatial Analysis, Regression, Machine Learning
@@ -122,14 +171,11 @@ My work spans environmental data, renewable energy, operational analytics, and p
 
 
 ### [Global Sustainability Analytics & Business Intelligence](ecolobby.qmd)
+
 **Interactive Analysis of Economic Development, Resource Demand, and Ecological Footprints**
 
 * **The Core Skills:** Tableau Dashboarding, Python Data Engineering, Exploratory Data Analysis, Data Imputation, Stakeholder Reporting
 
 * **The Story:** Transformed a complex global sustainability dataset into an interactive decision-support dashboard. Built automated Python workflows to clean, validate, and structure international environmental metrics, enabling stakeholders to explore relationships between economic development and ecological impact.
 
-:::
-:::
-
-:::
 :::

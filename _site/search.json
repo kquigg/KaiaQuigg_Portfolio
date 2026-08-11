@@ -37,37 +37,58 @@
   {
     "objectID": "ecolobby.html",
     "href": "ecolobby.html",
-    "title": "Macroeconomic Analysis & Business Intelligence",
+    "title": "Sustainability Analytics & Business Intelligence",
     "section": "",
-    "text": "README — Jump directly to the full data story and imputation breakdown below.\n🐍 CODE — Review the documented Python script executing the regional median imputation and scaling pipelines.\n📊 DASHBOARD — Access the completed, interactive Tableau BI dashboard mapping 152 countries."
+    "text": "README — Jump directly to the full sustainability analysis and data engineering workflow.\nCODE — Review the documented Python preprocessing pipeline, regional imputation strategy, and statistical analysis workflow.\nDASHBOARD — Explore the interactive Tableau dashboard analyzing global ecological trends across 182 countries."
   },
   {
     "objectID": "ecolobby.html#at-a-glance-core-methods-business-impact-and-key-challenges",
     "href": "ecolobby.html#at-a-glance-core-methods-business-impact-and-key-challenges",
-    "title": "Macroeconomic Analysis & Business Intelligence",
+    "title": "Sustainability Analytics & Business Intelligence",
     "section": "At a Glance: Core Methods, Business Impact, and Key Challenges",
-    "text": "At a Glance: Core Methods, Business Impact, and Key Challenges\n\n\n\nCore Methodologies\n\nInteractive BI Dashboard Design\nAdvanced Missing Data Imputation\nCategorical Feature Mapping\nMacroeconomic Scale Normalization\nQuantitative Exploratory Data Analysis (EDA)\n\n\n\n\nBusiness Impact & Domain Value\n\nBridging Code and Executive BI: I engineered a clean data handoff by using Python to execute heavy statistical cleaning and programmatic parsing, then exported the results directly into Tableau to build an interactive dashboard tailored for non-technical stakeholders.\nHandling Incomplete Real-World Datasets: Instead of dropping messy or missing records, I designed a multi-step data imputation strategy using regional medians, preserving critical global data rows without biasing the dataset."
+    "text": "At a Glance: Core Methods, Business Impact, and Key Challenges\n\n\n\nCore Methodologies\n\nExploratory Data Analysis (EDA)\nStatistical Data Imputation\nFeature Engineering & Scaling\nSocioeconomic Indicator Analysis\nMultivariate Regression Modeling\nInteractive Tableau Dashboard Development\n\n\n\n\nBusiness Impact & Domain Value\n\nTransforming Complex Global Data into Decisions: I converted large-scale sustainability datasets into interactive visual analytics that allow stakeholders to identify relationships between economic development, resource consumption, and environmental pressure.\nPreserving Data Integrity Across Global Records: Instead of removing incomplete country-level observations, I engineered a regional statistical imputation framework that maintained dataset coverage while reducing geographic bias."
   },
   {
-    "objectID": "ecolobby.html#key-challenge-feature-confounding-model-multicollinearity",
-    "href": "ecolobby.html#key-challenge-feature-confounding-model-multicollinearity",
-    "title": "Macroeconomic Analysis & Business Intelligence",
-    "section": "Key Challenge: Feature Confounding & Model Multicollinearity",
-    "text": "Key Challenge: Feature Confounding & Model Multicollinearity\n\nThe Technical Hurdle: Initial attempts to map human development indicators against sustainability metrics ran into a major algorithmic trap: severe Multicollinearity. While individual indicators like the Human Development Index (HDI) initially showed immense predictive significance (\\(p = 0.000\\)), introducing nested features like Income Group caused HDI’s statistical significance to completely evaporate (\\(p = 0.336\\)), triggering an extreme condition number warning (\\(4.73 \\times 10^5\\)) and threatening model reliability.\nThe Solution: Rather than relying on overlapping raw indices, I re-architected the workflow to separate predictive modeling from visual exploratory data analysis (EDA). I isolated the variance inflation by tracking how economic status absorbed human development flags, then transitioned the final data architecture into a split visual framework. This solution preserved the model’s high testing performance (\\(R^2 = 0.78\\)) while providing a clean, unconfounded dataset ready for cross-platform visual deployment."
+    "objectID": "ecolobby.html#key-challenge-feature-confounding-global-data-complexity",
+    "href": "ecolobby.html#key-challenge-feature-confounding-global-data-complexity",
+    "title": "Sustainability Analytics & Business Intelligence",
+    "section": "Key Challenge: Feature Confounding & Global Data Complexity",
+    "text": "Key Challenge: Feature Confounding & Global Data Complexity\n\nThe Technical Hurdle: Modeling relationships between socioeconomic development and ecological impact introduced significant feature overlap. Variables such as Human Development Index (HDI), income classification, and economic indicators captured similar underlying patterns, creating multicollinearity that threatened model interpretability.\nThe Solution: I redesigned the analytical workflow by separating predictive modeling from exploratory visualization. Correlated socioeconomic variables were evaluated independently during statistical modeling, while economic classifications were preserved for dashboard segmentation. This maintained strong predictive performance (\\(R^2 = 0.78\\)) while producing a clearer analytical framework."
   },
   {
     "objectID": "ecolobby.html#readme",
     "href": "ecolobby.html#readme",
-    "title": "Macroeconomic Analysis & Business Intelligence",
+    "title": "Sustainability Analytics & Business Intelligence",
     "section": "README",
-    "text": "README\n\nExecutive Summary\nCan a nation advance its human and economic development without completely bankrupting its natural environment? This project evaluates the fragile boundary between economic growth and global biocapacity, processing a massive macroeconomic tracking dataset compiled by the Global Footprint Network spanning 15,000 observations per country across 182 nations.\nBy pairing an automated data validation pipeline in Python with a front-end business intelligence deployment in Tableau, this study uncovers exactly how industrial development alters the planet’s resource balance.\nThe Core Finding: The analysis establishes that regional resource deficits are fundamentally infrastructure and carbon bypass problems rather than localized land mismanagement. When isolating individual resource sectors (cropland, grazing land, and forests), most global regions maintain a baseline ecological surplus. However, the introduction of industrial carbon footprints instantly obliterates these reserves, proving that mitigating environmental deficits requires targeted infrastructure overhauls rather than traditional resource rationing.\n\n\n\nCore Research Questions & Key Insights"
+    "text": "README\n\nExecutive Summary\nHow can societies continue economic development without exceeding the planet’s ecological capacity?\nThis project analyzes global ecological footprint trends by combining socioeconomic indicators, resource consumption metrics, and biocapacity measurements across 182 countries.\nUsing Python-based data engineering workflows and interactive Tableau deployment, this analysis investigates how economic development patterns influence environmental demand and identifies the primary drivers behind global ecological overshoot.\nThe project integrates statistical preprocessing, missing-data management, exploratory analysis, and business intelligence visualization to transform complex sustainability datasets into accessible decision-support tools.\nThe Core Finding: Global ecological deficits are driven primarily by carbon-intensive infrastructure and consumption patterns, rather than simple land resource scarcity. While many biological resource categories remain near equilibrium, fossil-fuel-driven economic systems create the largest imbalance between human demand and Earth’s regenerative capacity."
+  },
+  {
+    "objectID": "ecolobby.html#the-missing-data-challenge",
+    "href": "ecolobby.html#the-missing-data-challenge",
+    "title": "Sustainability Analytics & Business Intelligence",
+    "section": "The Missing Data Challenge",
+    "text": "The Missing Data Challenge\nThe Global Footprint Network dataset contained incomplete socioeconomic records across countries, creating challenges for consistent global comparison.\nThe Problem: Removing incomplete observations would disproportionately exclude countries with limited reporting infrastructure, introducing geographic bias into downstream analysis.\nThe Solution: I developed a regional median imputation workflow that preserved global coverage while maintaining realistic socioeconomic distributions.\nThe pipeline:\n\nValidated missing-value patterns across global records\nGrouped observations by geographic region\nApplied regional statistical baselines for missing values\nPreserved country-level representation for visualization and modeling"
+  },
+  {
+    "objectID": "ecolobby.html#resolving-multicollinearity-in-socioeconomic-indicators",
+    "href": "ecolobby.html#resolving-multicollinearity-in-socioeconomic-indicators",
+    "title": "Sustainability Analytics & Business Intelligence",
+    "section": "Resolving Multicollinearity in Socioeconomic Indicators",
+    "text": "Resolving Multicollinearity in Socioeconomic Indicators\nInitial modeling revealed strong relationships between economic classification variables and human development measurements.\nHDI demonstrated predictive significance independently, but introducing overlapping categorical variables reduced interpretability due to shared variance.\nThe Analytical Fix:\n\nRemoved redundant predictors during regression modeling\nEvaluated economic variables independently\nUsed categorical classifications primarily for visualization\nPreserved interpretability for stakeholder communication"
+  },
+  {
+    "objectID": "ecolobby.html#translating-sustainability-metrics-into-stakeholder-insights",
+    "href": "ecolobby.html#translating-sustainability-metrics-into-stakeholder-insights",
+    "title": "Sustainability Analytics & Business Intelligence",
+    "section": "Translating Sustainability Metrics into Stakeholder Insights",
+    "text": "Translating Sustainability Metrics into Stakeholder Insights\nThe final Tableau dashboard transformed complex ecological accounting metrics into accessible visual stories.\nDashboard capabilities include:\n\nGlobal ecological footprint comparisons\nCountry-level sustainability profiles\nBiocapacity deficit visualization\nEconomic development segmentation\nResource category breakdowns\nRegional sustainability trend analysis\n\nBy combining Python-based data engineering with Tableau visualization, this project demonstrates the complete analytics workflow:\nRaw Global Data → Statistical Processing → Validated Metrics → Interactive Decision Support"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "\nData with context. Insights with impact.\n",
     "section": "",
-    "text": "Data Analyst & Storyteller\n\n\nWith an M.S. in Data Science and a background in scientific research, I bridge the gap between complex datasets and clear insights through analysis, visualization, and communication.\n\nView My Work    Get in Touch\n\n\n\n\n\n\n\nLocation\n\n\nUnited States (Remote) Rhode Island / Connecticut (Hybrid & On-site)\n\n\n\n\n\nEducation\n\n\n• MS Data Science · URI • BS Ecology & Evolution · UCSD\n\n\n\n\n\nSpecialization\n\n\n• Data Storytelling & Visualization • Statistical Analysis & Predictive Modeling • Reporting & Cross-functional Collaboration\n\n\n\n\n\nTech Stack\n\n\n\nLANGUAGES & TOOLS R · Python · SQL · Advanced Excel\n\n\nDATA ENGINEERING pandas · NumPy · scikit-learn · tidyverse · Git & GitHub\n\n\nBI & VISUALIZATION Tableau · Power BI · Matplotlib · Seaborn\n:::"
+    "text": "Data Analyst & Storyteller\n\n\nWith an M.S. in Data Science and a background in scientific research, I bridge the gap between complex datasets and clear insights through analysis, visualization, and communication.\n\nView My Work    Get in Touch\n\n\n\n\n\n\n\nLocation\n\n\nUnited States (Remote) Rhode Island / Connecticut (Hybrid & On-site)\n\n\n\n\n\nEducation\n\n\n• MS Data Science · URI • BS Ecology & Evolution · UCSD\n\n\n\n\n\nSpecialization\n\n\n• Data Storytelling & Visualization • Statistical Analysis & Predictive Modeling • Reporting & Cross-functional Collaboration"
   },
   {
     "objectID": "index.html#featured-projects",

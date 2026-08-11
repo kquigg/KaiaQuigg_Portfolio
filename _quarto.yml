@@ -1,25 +1,49 @@
 project:
   type: website
-  resources:
-    - "data/*"
   output-dir: _site
+
+resources:
+  - "data/*"
+  - "Kaia_Quigg_Resume.pdf"
 
 website:
   title: "Kaia Quigg"
+
   navbar:
-    background: primary
-    search: false
+    background: light
+    foreground: dark
+
     left:
       - href: index.qmd
         text: Home
-      - href: ecommerce-sql-analysis.qmd
-        text: "SQL Analytics"
-      - href: crablobby.qmd
-        text: "Predictive Modeling"
-      - href: ecolobby.qmd
-        text: "Sustainability BI"
+
+      - href: index.qmd#about-me
+        text: About
+
+      - href: index.qmd#skills
+        text: Skills
+
+      - text: Projects
+        menu:
+          - href: ecommerce-sql-analysis.qmd
+            text: SQL Analytics
+
+          - href: crablobby.qmd
+            text: Predictive Modeling
+
+          - href: ecolobby.qmd
+            text: Sustainability BI
+
+    right:
+      - text: Resume
+        icon: file-earmark-person
+        href: Kaia_Quigg_Resume.pdf
+
+      - text: Contact Me
+        icon: envelope
+        href: mailto:kaia.quigg@gmail.com
 
 format:
   html:
-    theme: flatly
-    toc: true
+    theme: sandstone
+    toc: false
