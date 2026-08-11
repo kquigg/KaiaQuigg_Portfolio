@@ -79,7 +79,7 @@ Rhode Island (Hybrid & On-site)
 <div style="display: flex; flex-direction: column;">
 
 <!-- LANGUAGES & TOOLS -->
-
+<div style="display: flex; padding: 0 0 24px 0;">
 <div style="font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #777777; width: 30%;">Languages & Tools</div>
 <div style="width: 70%; font-size: 1.05rem; color: #2a2a2a;">
 R · Python · SQL · Advanced Excel
