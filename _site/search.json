@@ -86,14 +86,14 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "\nData with context. Insights with impact.\n",
+    "title": "\nTurning data into decisions.\n",
     "section": "",
-    "text": "Data Analyst & Storyteller\n\n\nWith an M.S. in Data Science and a background in scientific research, I bridge the gap between complex datasets and clear insights through analysis, visualization, and communication.\n\nView My Work    Get in Touch\n\n\n\n\n\n\n\nLocation\n\n\nUnited States (Remote) Rhode Island / Connecticut (Hybrid & On-site)\n\n\n\n\n\nEducation\n\n\n• MS Data Science · URI • BS Ecology & Evolution · UCSD\n\n\n\n\n\nSpecialization\n\n\n• Data Storytelling & Visualization • Statistical Analysis & Predictive Modeling • Reporting & Cross-functional Collaboration"
+    "text": "Data Analyst & Storyteller\n\n\nWith an M.S. in Data Science and a background in scientific research, I specialize in taking raw, complex datasets and translating them into clear visual reporting, reproducible code, and practical insights that teams can act on.\n\nView My Work    Get in Touch\n\n\n\n\n\n\n\nLocation\n\n\nUnited States (Remote) Rhode Island (Hybrid & On-site)\n\n\n\n\n\nEducation\n\n\n• MS Data Science · URI • BS Ecology & Evolution · UCSD\n\n\n\n\n\nSpecialization\n\n\n• Data Storytelling & Visualization • Statistical Analysis & Predictive Modeling • Reporting & Cross-functional Collaboration"
   },
   {
     "objectID": "index.html#featured-projects",
     "href": "index.html#featured-projects",
-    "title": "\nData with context. Insights with impact.\n",
+    "title": "\nTurning data into decisions.\n",
     "section": "Featured Projects",
     "text": "Featured Projects\n\nSQL Analytics & Relational Database Engineering\nBusiness Performance Analysis Across 100K+ E-Commerce Transactions\n\nThe Core Skills: PostgreSQL, Relational Database Design, Advanced SQL, Window Functions, Business Metrics, Customer Segmentation\nThe Story: Built a normalized PostgreSQL database from raw e-commerce transaction data and developed analytical SQL workflows to uncover revenue drivers, customer segments, and operational bottlenecks. Identified $13.2M in transaction value, quantified fulfillment-related customer satisfaction impacts, and created business-ready insights from complex relational data.\n\n\n\nPredictive Modeling & Geospatial Analytics\nStatistical Back-Casting of the Eastern Bering Sea Snow Crab Collapse\n\nThe Core Skills: Statistical Modeling, Predictive Analytics, Spatial Analysis, Regression, Machine Learning\nThe Story: Engineered a historical forecasting framework using NOAA fisheries data to reconstruct population movement during a critical data gap. Through spatial modeling and statistical analysis, identified the environmental constraints that created a “climate trap” leading to population collapse.\n\n\n\nGlobal Sustainability Analytics & Business Intelligence\nInteractive Analysis of Economic Development, Resource Demand, and Ecological Footprints\n\nThe Core Skills: Tableau Dashboarding, Python Data Engineering, Exploratory Data Analysis, Data Imputation, Stakeholder Reporting\nThe Story: Transformed a complex global sustainability dataset into an interactive decision-support dashboard. Built automated Python workflows to clean, validate, and structure international environmental metrics, enabling stakeholders to explore relationships between economic development and ecological impact."
   },
