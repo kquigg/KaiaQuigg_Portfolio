@@ -148,6 +148,12 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#database-verification-row-count-auditing" id="toc-database-verification-row-count-auditing" class="nav-link active" data-scroll-target="#database-verification-row-count-auditing">1. Database Verification &amp; Row Count Auditing</a></li>
+  <li><a href="#revenue-and-order-analytics" id="toc-revenue-and-order-analytics" class="nav-link" data-scroll-target="#revenue-and-order-analytics">Revenue and Order Analytics</a></li>
+  <li><a href="#top-product-categories-by-revenue" id="toc-top-product-categories-by-revenue" class="nav-link" data-scroll-target="#top-product-categories-by-revenue">Top Product Categories by Revenue</a></li>
+  <li><a href="#payment-type-breakdown" id="toc-payment-type-breakdown" class="nav-link" data-scroll-target="#payment-type-breakdown">Payment Type Breakdown</a></li>
+  <li><a href="#monthly-revenue-trends" id="toc-monthly-revenue-trends" class="nav-link" data-scroll-target="#monthly-revenue-trends">Monthly Revenue Trends</a></li>
+  <li><a href="#delivery-performance-and-customer-satisfaction" id="toc-delivery-performance-and-customer-satisfaction" class="nav-link" data-scroll-target="#delivery-performance-and-customer-satisfaction">Delivery Performance and Customer Satisfaction</a></li>
+  <li><a href="#customer-segmentation-rfm-monetary-quartiles" id="toc-customer-segmentation-rfm-monetary-quartiles" class="nav-link" data-scroll-target="#customer-segmentation-rfm-monetary-quartiles">Customer Segmentation (RFM Monetary Quartiles)</a></li>
   </ul>
 </nav>
     </div>
@@ -183,13 +189,117 @@ ul.task-list li input[type="checkbox"] {
 <section id="database-verification-row-count-auditing" class="level3">
 <h3 class="anchored" data-anchor-id="database-verification-row-count-auditing">1. Database Verification &amp; Row Count Auditing</h3>
 <p>Before performing analysis, table integrity was confirmed across all 8 ingested tables.</p>
-<p>```sql SELECT ‘customers’ AS table_name, COUNT(<em>) AS total_rows FROM customers UNION ALL SELECT ‘orders’, COUNT(</em>) FROM orders UNION ALL SELECT ‘order_items’, COUNT(<em>) FROM order_items UNION ALL SELECT ‘products’, COUNT(</em>) FROM products UNION ALL SELECT ‘order_payments’, COUNT(<em>) FROM order_payments UNION ALL SELECT ‘order_reviews’, COUNT(</em>) FROM order_reviews UNION ALL SELECT ‘sellers’, COUNT(<em>) FROM sellers UNION ALL SELECT ‘product_category_name_translation’, COUNT(</em>) FROM product_category_name_translation;</p>
-<p>SELECT COUNT(DISTINCT o.order_id) AS total_orders, ROUND(SUM(i.price), 2) AS total_revenue_usd, ROUND(AVG(i.price), 2) AS avg_item_price FROM orders o JOIN order_items i ON o.order_id = i.order_id WHERE o.order_status = ‘delivered’;</p>
-<p>SELECT t.product_category_name_english AS category_name, COUNT(DISTINCT i.order_id) AS total_orders, ROUND(SUM(i.price), 2) AS total_revenue_usd FROM order_items i JOIN products p ON i.product_id = p.product_id JOIN product_category_name_translation t ON p.product_category_name = t.product_category_name GROUP BY t.product_category_name_english ORDER BY total_revenue_usd DESC LIMIT 10;</p>
-<p>SELECT payment_type, COUNT(order_id) AS total_transactions, ROUND(SUM(payment_value), 2) AS total_payment_value, ROUND(AVG(payment_installments), 1) AS avg_installments FROM order_payments GROUP BY payment_type ORDER BY total_payment_value DESC;</p>
-<p>SELECT DATE_TRUNC(‘month’, o.order_purchase_timestamp)::DATE AS order_month, COUNT(DISTINCT o.order_id) AS total_orders, ROUND(SUM(p.payment_value), 2) AS monthly_revenue FROM orders o JOIN order_payments p ON o.order_id = p.order_id WHERE o.order_status = ‘delivered’ GROUP BY 1 ORDER BY order_month ASC;</p>
-<p>SELECT CASE WHEN o.order_delivered_customer_date &gt; o.order_estimated_delivery_date THEN ‘Late’ ELSE ‘On-Time’ END AS delivery_performance, COUNT(DISTINCT o.order_id) AS total_orders, ROUND(AVG(r.review_score), 2) AS avg_review_score FROM orders o JOIN order_reviews r ON o.order_id = r.order_id WHERE o.order_status = ‘delivered’ AND o.order_delivered_customer_date IS NOT NULL GROUP BY 1;</p>
-<p>WITH customer_metrics AS ( SELECT c.customer_unique_id, MAX(o.order_purchase_timestamp) AS last_purchase_date, COUNT(DISTINCT o.order_id) AS total_orders, ROUND(SUM(p.payment_value), 2) AS total_spent FROM customers c JOIN orders o ON c.customer_id = o.customer_id JOIN order_payments p ON o.order_id = p.order_id WHERE o.order_status = ‘delivered’ GROUP BY c.customer_unique_id ) SELECT customer_unique_id, total_orders, total_spent, NTILE(4) OVER (ORDER BY total_spent DESC) AS monetary_quartile FROM customer_metrics ORDER BY total_spent DESC LIMIT 10;</p>
+<pre class="{sql}"><code>#| eval: false
+SELECT 'customers' AS table_name, COUNT(*) AS total_rows FROM customers
+UNION ALL
+SELECT 'orders', COUNT(*) FROM orders
+UNION ALL
+SELECT 'order_items', COUNT(*) FROM order_items
+UNION ALL
+SELECT 'products', COUNT(*) FROM products
+UNION ALL
+SELECT 'order_payments', COUNT(*) FROM order_payments
+UNION ALL
+SELECT 'order_reviews', COUNT(*) FROM order_reviews
+UNION ALL
+SELECT 'sellers', COUNT(*) FROM sellers
+UNION ALL
+SELECT 'product_category_name_translation', COUNT(*) FROM product_category_name_translation;</code></pre>
+</section>
+<section id="revenue-and-order-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="revenue-and-order-analytics">Revenue and Order Analytics</h2>
+<pre class="{sql}"><code>#| eval: false
+SELECT 
+    COUNT(DISTINCT o.order_id) AS total_orders,
+    ROUND(SUM(i.price), 2) AS total_revenue_usd,
+    ROUND(AVG(i.price), 2) AS avg_item_price
+FROM orders o
+JOIN order_items i 
+    ON o.order_id = i.order_id
+WHERE o.order_status = 'delivered';</code></pre>
+</section>
+<section id="top-product-categories-by-revenue" class="level2">
+<h2 class="anchored" data-anchor-id="top-product-categories-by-revenue">Top Product Categories by Revenue</h2>
+<pre class="{sql}"><code>#| eval: false
+SELECT 
+    t.product_category_name_english AS category_name,
+    COUNT(DISTINCT i.order_id) AS total_orders,
+    ROUND(SUM(i.price), 2) AS total_revenue_usd
+FROM order_items i
+JOIN products p 
+    ON i.product_id = p.product_id
+JOIN product_category_name_translation t 
+    ON p.product_category_name = t.product_category_name
+GROUP BY t.product_category_name_english
+ORDER BY total_revenue_usd DESC
+LIMIT 10;</code></pre>
+</section>
+<section id="payment-type-breakdown" class="level2">
+<h2 class="anchored" data-anchor-id="payment-type-breakdown">Payment Type Breakdown</h2>
+<pre class="{sql}"><code>#| eval: false
+SELECT 
+    payment_type,
+    COUNT(order_id) AS total_transactions,
+    ROUND(SUM(payment_value), 2) AS total_payment_value,
+    ROUND(AVG(payment_installments), 1) AS avg_installments
+FROM order_payments
+GROUP BY payment_type
+ORDER BY total_payment_value DESC;</code></pre>
+</section>
+<section id="monthly-revenue-trends" class="level2">
+<h2 class="anchored" data-anchor-id="monthly-revenue-trends">Monthly Revenue Trends</h2>
+<pre class="{sql}"><code>#| eval: false
+SELECT 
+    DATE_TRUNC('month', o.order_purchase_timestamp)::DATE AS order_month,
+    COUNT(DISTINCT o.order_id) AS total_orders,
+    ROUND(SUM(p.payment_value), 2) AS monthly_revenue
+FROM orders o
+JOIN order_payments p 
+    ON o.order_id = p.order_id
+WHERE o.order_status = 'delivered'
+GROUP BY 1
+ORDER BY order_month ASC;</code></pre>
+</section>
+<section id="delivery-performance-and-customer-satisfaction" class="level2">
+<h2 class="anchored" data-anchor-id="delivery-performance-and-customer-satisfaction">Delivery Performance and Customer Satisfaction</h2>
+<pre class="{sql}"><code>#| eval: false
+SELECT 
+    CASE 
+        WHEN o.order_delivered_customer_date &gt; o.order_estimated_delivery_date THEN 'Late'
+        ELSE 'On-Time'
+    END AS delivery_performance,
+    COUNT(DISTINCT o.order_id) AS total_orders,
+    ROUND(AVG(r.review_score), 2) AS avg_review_score
+FROM orders o
+JOIN order_reviews r 
+    ON o.order_id = r.order_id
+WHERE o.order_status = 'delivered'
+  AND o.order_delivered_customer_date IS NOT NULL
+GROUP BY 1;</code></pre>
+</section>
+<section id="customer-segmentation-rfm-monetary-quartiles" class="level2">
+<h2 class="anchored" data-anchor-id="customer-segmentation-rfm-monetary-quartiles">Customer Segmentation (RFM Monetary Quartiles)</h2>
+<pre class="{sql}"><code>#| eval: false
+WITH customer_metrics AS (
+    SELECT 
+        c.customer_unique_id,
+        MAX(o.order_purchase_timestamp) AS last_purchase_date,
+        COUNT(DISTINCT o.order_id) AS total_orders,
+        ROUND(SUM(p.payment_value), 2) AS total_spent
+    FROM customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+    JOIN order_payments p ON o.order_id = p.order_id
+    WHERE o.order_status = 'delivered'
+    GROUP BY c.customer_unique_id
+)
+SELECT 
+    customer_unique_id,
+    total_orders,
+    total_spent,
+    NTILE(4) OVER (ORDER BY total_spent DESC) AS monetary_quartile
+FROM customer_metrics
+ORDER BY total_spent DESC
+LIMIT 10;</code></pre>
 
 
 </section>

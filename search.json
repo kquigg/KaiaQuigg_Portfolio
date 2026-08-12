@@ -158,7 +158,49 @@
     "href": "sqlproject.html",
     "title": "Relational SQL Queries & Analytics Execution",
     "section": "",
-    "text": "This document contains the complete PostgreSQL analysis script executed against the ecommerce_db database.\n\n1. Database Verification & Row Count Auditing\nBefore performing analysis, table integrity was confirmed across all 8 ingested tables.\n```sql SELECT ‘customers’ AS table_name, COUNT() AS total_rows FROM customers UNION ALL SELECT ‘orders’, COUNT() FROM orders UNION ALL SELECT ‘order_items’, COUNT() FROM order_items UNION ALL SELECT ‘products’, COUNT() FROM products UNION ALL SELECT ‘order_payments’, COUNT() FROM order_payments UNION ALL SELECT ‘order_reviews’, COUNT() FROM order_reviews UNION ALL SELECT ‘sellers’, COUNT() FROM sellers UNION ALL SELECT ‘product_category_name_translation’, COUNT() FROM product_category_name_translation;\nSELECT COUNT(DISTINCT o.order_id) AS total_orders, ROUND(SUM(i.price), 2) AS total_revenue_usd, ROUND(AVG(i.price), 2) AS avg_item_price FROM orders o JOIN order_items i ON o.order_id = i.order_id WHERE o.order_status = ‘delivered’;\nSELECT t.product_category_name_english AS category_name, COUNT(DISTINCT i.order_id) AS total_orders, ROUND(SUM(i.price), 2) AS total_revenue_usd FROM order_items i JOIN products p ON i.product_id = p.product_id JOIN product_category_name_translation t ON p.product_category_name = t.product_category_name GROUP BY t.product_category_name_english ORDER BY total_revenue_usd DESC LIMIT 10;\nSELECT payment_type, COUNT(order_id) AS total_transactions, ROUND(SUM(payment_value), 2) AS total_payment_value, ROUND(AVG(payment_installments), 1) AS avg_installments FROM order_payments GROUP BY payment_type ORDER BY total_payment_value DESC;\nSELECT DATE_TRUNC(‘month’, o.order_purchase_timestamp)::DATE AS order_month, COUNT(DISTINCT o.order_id) AS total_orders, ROUND(SUM(p.payment_value), 2) AS monthly_revenue FROM orders o JOIN order_payments p ON o.order_id = p.order_id WHERE o.order_status = ‘delivered’ GROUP BY 1 ORDER BY order_month ASC;\nSELECT CASE WHEN o.order_delivered_customer_date &gt; o.order_estimated_delivery_date THEN ‘Late’ ELSE ‘On-Time’ END AS delivery_performance, COUNT(DISTINCT o.order_id) AS total_orders, ROUND(AVG(r.review_score), 2) AS avg_review_score FROM orders o JOIN order_reviews r ON o.order_id = r.order_id WHERE o.order_status = ‘delivered’ AND o.order_delivered_customer_date IS NOT NULL GROUP BY 1;\nWITH customer_metrics AS ( SELECT c.customer_unique_id, MAX(o.order_purchase_timestamp) AS last_purchase_date, COUNT(DISTINCT o.order_id) AS total_orders, ROUND(SUM(p.payment_value), 2) AS total_spent FROM customers c JOIN orders o ON c.customer_id = o.customer_id JOIN order_payments p ON o.order_id = p.order_id WHERE o.order_status = ‘delivered’ GROUP BY c.customer_unique_id ) SELECT customer_unique_id, total_orders, total_spent, NTILE(4) OVER (ORDER BY total_spent DESC) AS monetary_quartile FROM customer_metrics ORDER BY total_spent DESC LIMIT 10;"
+    "text": "This document contains the complete PostgreSQL analysis script executed against the ecommerce_db database."
+  },
+  {
+    "objectID": "sqlproject.html#revenue-and-order-analytics",
+    "href": "sqlproject.html#revenue-and-order-analytics",
+    "title": "Relational SQL Queries & Analytics Execution",
+    "section": "Revenue and Order Analytics",
+    "text": "Revenue and Order Analytics\n#| eval: false\nSELECT \n    COUNT(DISTINCT o.order_id) AS total_orders,\n    ROUND(SUM(i.price), 2) AS total_revenue_usd,\n    ROUND(AVG(i.price), 2) AS avg_item_price\nFROM orders o\nJOIN order_items i \n    ON o.order_id = i.order_id\nWHERE o.order_status = 'delivered';"
+  },
+  {
+    "objectID": "sqlproject.html#top-product-categories-by-revenue",
+    "href": "sqlproject.html#top-product-categories-by-revenue",
+    "title": "Relational SQL Queries & Analytics Execution",
+    "section": "Top Product Categories by Revenue",
+    "text": "Top Product Categories by Revenue\n#| eval: false\nSELECT \n    t.product_category_name_english AS category_name,\n    COUNT(DISTINCT i.order_id) AS total_orders,\n    ROUND(SUM(i.price), 2) AS total_revenue_usd\nFROM order_items i\nJOIN products p \n    ON i.product_id = p.product_id\nJOIN product_category_name_translation t \n    ON p.product_category_name = t.product_category_name\nGROUP BY t.product_category_name_english\nORDER BY total_revenue_usd DESC\nLIMIT 10;"
+  },
+  {
+    "objectID": "sqlproject.html#payment-type-breakdown",
+    "href": "sqlproject.html#payment-type-breakdown",
+    "title": "Relational SQL Queries & Analytics Execution",
+    "section": "Payment Type Breakdown",
+    "text": "Payment Type Breakdown\n#| eval: false\nSELECT \n    payment_type,\n    COUNT(order_id) AS total_transactions,\n    ROUND(SUM(payment_value), 2) AS total_payment_value,\n    ROUND(AVG(payment_installments), 1) AS avg_installments\nFROM order_payments\nGROUP BY payment_type\nORDER BY total_payment_value DESC;"
+  },
+  {
+    "objectID": "sqlproject.html#monthly-revenue-trends",
+    "href": "sqlproject.html#monthly-revenue-trends",
+    "title": "Relational SQL Queries & Analytics Execution",
+    "section": "Monthly Revenue Trends",
+    "text": "Monthly Revenue Trends\n#| eval: false\nSELECT \n    DATE_TRUNC('month', o.order_purchase_timestamp)::DATE AS order_month,\n    COUNT(DISTINCT o.order_id) AS total_orders,\n    ROUND(SUM(p.payment_value), 2) AS monthly_revenue\nFROM orders o\nJOIN order_payments p \n    ON o.order_id = p.order_id\nWHERE o.order_status = 'delivered'\nGROUP BY 1\nORDER BY order_month ASC;"
+  },
+  {
+    "objectID": "sqlproject.html#delivery-performance-and-customer-satisfaction",
+    "href": "sqlproject.html#delivery-performance-and-customer-satisfaction",
+    "title": "Relational SQL Queries & Analytics Execution",
+    "section": "Delivery Performance and Customer Satisfaction",
+    "text": "Delivery Performance and Customer Satisfaction\n#| eval: false\nSELECT \n    CASE \n        WHEN o.order_delivered_customer_date &gt; o.order_estimated_delivery_date THEN 'Late'\n        ELSE 'On-Time'\n    END AS delivery_performance,\n    COUNT(DISTINCT o.order_id) AS total_orders,\n    ROUND(AVG(r.review_score), 2) AS avg_review_score\nFROM orders o\nJOIN order_reviews r \n    ON o.order_id = r.order_id\nWHERE o.order_status = 'delivered'\n  AND o.order_delivered_customer_date IS NOT NULL\nGROUP BY 1;"
+  },
+  {
+    "objectID": "sqlproject.html#customer-segmentation-rfm-monetary-quartiles",
+    "href": "sqlproject.html#customer-segmentation-rfm-monetary-quartiles",
+    "title": "Relational SQL Queries & Analytics Execution",
+    "section": "Customer Segmentation (RFM Monetary Quartiles)",
+    "text": "Customer Segmentation (RFM Monetary Quartiles)\n#| eval: false\nWITH customer_metrics AS (\n    SELECT \n        c.customer_unique_id,\n        MAX(o.order_purchase_timestamp) AS last_purchase_date,\n        COUNT(DISTINCT o.order_id) AS total_orders,\n        ROUND(SUM(p.payment_value), 2) AS total_spent\n    FROM customers c\n    JOIN orders o ON c.customer_id = o.customer_id\n    JOIN order_payments p ON o.order_id = p.order_id\n    WHERE o.order_status = 'delivered'\n    GROUP BY c.customer_unique_id\n)\nSELECT \n    customer_unique_id,\n    total_orders,\n    total_spent,\n    NTILE(4) OVER (ORDER BY total_spent DESC) AS monetary_quartile\nFROM customer_metrics\nORDER BY total_spent DESC\nLIMIT 10;"
   },
   {
     "objectID": "sqllobby.html",
